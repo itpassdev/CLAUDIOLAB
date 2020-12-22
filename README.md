@@ -198,3 +198,5 @@ Template selection: 1
 ```
 
 ![Content](sam-app.png)
+
+[Contenuto del template (formato YAML)](template.yaml)
