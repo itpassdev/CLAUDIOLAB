@@ -201,6 +201,10 @@ Template selection: 1
 
 [Contenuto del template (formato YAML)](template.yaml)
 
-[Interpretazione file template.yaml](https://aws.amazon.com/it/blogs/compute/introducing-simplified-serverless-application-deplyoment-and-management/)
+From [Interpretazione file template.yaml](https://aws.amazon.com/it/blogs/compute/introducing-simplified-serverless-application-deplyoment-and-management/):
+
+<cite>
+"The really cool thing about AWS SAM is that you can also use it to create an event source to trigger your Lambda function with just a few lines of text."
+</cite>
 
 ![Sezione](function_resource.png)
