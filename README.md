@@ -196,3 +196,5 @@ Template selection: 1
     
     Next steps can be found in the README file at ./sam-app/README.md
 ```
+
+![Content](sam-app.png)
