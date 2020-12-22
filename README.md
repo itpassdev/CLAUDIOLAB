@@ -202,3 +202,5 @@ Template selection: 1
 [Contenuto del template (formato YAML)](template.yaml)
 
 [Interpretazione file template.yaml](https://aws.amazon.com/it/blogs/compute/introducing-simplified-serverless-application-deplyoment-and-management/)
+
+![Sezione](function_resource.png)
