@@ -207,4 +207,6 @@ From [Interpretazione file template.yaml](https://aws.amazon.com/it/blogs/comput
 "The really cool thing about AWS SAM is that you can also use it to create an event source to trigger your Lambda function with just a few lines of text."
 </cite>
 
+Nell'esempio di base l'evento è di tipo `Api` 
+
 ![Sezione](function_resource.png)
