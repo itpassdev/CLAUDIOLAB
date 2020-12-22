@@ -268,35 +268,6 @@ Su internet viene spiegato come: *API services verify timestamps to be within 5 
 **Per correggere questo errore con** `CHGSYSVAL SYSVAL(QHOUR) VALUE('18')` **anticipo di un ora**
 
 ```
-bash-5.0$ samdev deploy --guided
-
-Configuring SAM deploy
-======================
-
-        Looking for config file [samconfig.toml] :  Not found
-
-        Setting default arguments for 'sam deploy'
-        =========================================
-        Stack Name [sam-app]: 
-        AWS Region [us-east-1]: eu-south-1
-        #Shows you resources changes to be deployed and require a 'Y' to initiate deploy
-        Confirm changes before deploy [y/N]: Y
-        #SAM needs permission to be able to create roles to connect to the resources in your template
-        Allow SAM CLI IAM role creation [Y/n]: Y
-        HelloWorldFunction may not have authorization defined, Is this okay? [y/N]: Y
-        Save arguments to configuration file [Y/n]: Y
-        SAM configuration file [samconfig.toml]: 
-        SAM configuration environment [default]: 
-
-        Looking for resources needed for deployment: Not found.
-        Creating the required resources...
-Error: Failed to create managed resources: An error occurred (SignatureDoesNotMatch) when calling the CreateChangeSet operation: Signature not yet current: 20201222T190311Z is still later than 20201222T180858Z (20201222T180358Z + 5 min.)
-bash-5.0$ date
-mar dic 22 19:03:17  2020
-bash-5.0$ date
-mar dic 22 18:09:44  2020
-bash-5.0$ samdev deploy --guided
-
 Configuring SAM deploy
 ======================
 
