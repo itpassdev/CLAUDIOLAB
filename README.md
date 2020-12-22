@@ -200,3 +200,5 @@ Template selection: 1
 ![Content](sam-app.png)
 
 [Contenuto del template (formato YAML)](template.yaml)
+
+[Interpretazione file template.yaml](https://aws.amazon.com/it/blogs/compute/introducing-simplified-serverless-application-deplyoment-and-management/)
