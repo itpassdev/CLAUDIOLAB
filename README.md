@@ -210,3 +210,26 @@ From [Interpretazione file template.yaml](https://aws.amazon.com/it/blogs/comput
 Nell'esempio di base l'evento è di tipo `Api` 
 
 ![Sezione](function_resource.png)
+
+```
+bash-5.0$ samdev deploy --guided
+
+Configuring SAM deploy
+======================
+
+        Looking for config file [samconfig.toml] :  Not found
+
+        Setting default arguments for 'sam deploy'
+        =========================================
+        Stack Name [sam-app]: 
+        AWS Region [us-east-1]: eu-south-1
+        #Shows you resources changes to be deployed and require a 'Y' to initiate deploy
+        Confirm changes before deploy [y/N]: Y
+        #SAM needs permission to be able to create roles to connect to the resources in your template
+        Allow SAM CLI IAM role creation [Y/n]: 
+        HelloWorldFunction may not have authorization defined, Is this okay? [y/N]: Y
+        Save arguments to configuration file [Y/n]: 
+        SAM configuration file [samconfig.toml]: 
+        SAM configuration environment [default]: 
+Error: Failed to create managed resources: Unable to locate credentials
+```
