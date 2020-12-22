@@ -264,3 +264,133 @@ Error: Failed to create managed resources: An error occurred (SignatureDoesNotMa
 ```
 
 Su internet viene spiegato come: *API services verify timestamps to be within 5 minutes of actual time.* **If the system clock is off by more than 5 minutes, then the API requests will fail.** 
+
+**Per correggere questo errore con ** `CHGSYSVAL SYSVAL(QHOUR) VALUE('18')` **anticipo di un ora**
+
+```
+bash-5.0$ samdev deploy --guided
+
+Configuring SAM deploy
+======================
+
+        Looking for config file [samconfig.toml] :  Not found
+
+        Setting default arguments for 'sam deploy'
+        =========================================
+        Stack Name [sam-app]: 
+        AWS Region [us-east-1]: eu-south-1
+        #Shows you resources changes to be deployed and require a 'Y' to initiate deploy
+        Confirm changes before deploy [y/N]: Y
+        #SAM needs permission to be able to create roles to connect to the resources in your template
+        Allow SAM CLI IAM role creation [Y/n]: 
+        HelloWorldFunction may not have authorization defined, Is this okay? [y/N]: Y
+        Save arguments to configuration file [Y/n]: Y
+        SAM configuration file [samconfig.toml]: 
+        SAM configuration environment [default]: 
+
+        Looking for resources needed for deployment: Not found.
+        Creating the required resources...
+Error: Failed to create managed resources: An error occurred (SignatureDoesNotMatch) when calling the CreateChangeSet operation: Signature not yet current: 20201222T184910Z is still later than 20201222T175457Z (20201222T174957Z + 5 min.)
+bash-5.0$ 
+bash-5.0$ time
+
+real    0m0,000s
+user    0m0,000s
+sys     0m0,000s
+bash-5.0$ dt
+bash: dt: command not found
+bash-5.0$ date
+mar dic 22 19:01:57  2020
+bash-5.0$ samdev deploy --guided
+
+Configuring SAM deploy
+======================
+
+        Looking for config file [samconfig.toml] :  Not found
+
+        Setting default arguments for 'sam deploy'
+        =========================================
+        Stack Name [sam-app]: 
+        AWS Region [us-east-1]: eu-south-1
+        #Shows you resources changes to be deployed and require a 'Y' to initiate deploy
+        Confirm changes before deploy [y/N]: Y
+        #SAM needs permission to be able to create roles to connect to the resources in your template
+        Allow SAM CLI IAM role creation [Y/n]: Y
+        HelloWorldFunction may not have authorization defined, Is this okay? [y/N]: Y
+        Save arguments to configuration file [Y/n]: Y
+        SAM configuration file [samconfig.toml]: 
+        SAM configuration environment [default]: 
+
+        Looking for resources needed for deployment: Not found.
+        Creating the required resources...
+Error: Failed to create managed resources: An error occurred (SignatureDoesNotMatch) when calling the CreateChangeSet operation: Signature not yet current: 20201222T190311Z is still later than 20201222T180858Z (20201222T180358Z + 5 min.)
+bash-5.0$ date
+mar dic 22 19:03:17  2020
+bash-5.0$ date
+mar dic 22 18:09:44  2020
+bash-5.0$ samdev deploy --guided
+
+Configuring SAM deploy
+======================
+
+        Looking for config file [samconfig.toml] :  Not found
+
+        Setting default arguments for 'sam deploy'
+        =========================================
+        Stack Name [sam-app]: 
+        AWS Region [us-east-1]: eu-south-1
+        #Shows you resources changes to be deployed and require a 'Y' to initiate deploy
+        Confirm changes before deploy [y/N]: Y
+        #SAM needs permission to be able to create roles to connect to the resources in your template
+        Allow SAM CLI IAM role creation [Y/n]: 
+        HelloWorldFunction may not have authorization defined, Is this okay? [y/N]: Y
+        Save arguments to configuration file [Y/n]: Y
+        SAM configuration file [samconfig.toml]: 
+        SAM configuration environment [default]: 
+
+        Looking for resources needed for deployment: Found!
+
+                Managed S3 bucket: aws-sam-cli-managed-default-samclisourcebucket-1h5v0dlmdrcf5
+                A different default S3 bucket can be set in samconfig.toml
+
+        Saved arguments to config file
+        Running 'sam deploy' for future deployments will use the parameters saved above.
+        The above parameters can be changed by modifying samconfig.toml
+        Learn more about samconfig.toml syntax at 
+        https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-config.html
+
+Uploading to sam-app/c6ce8fa8b5a97dd022ecd006536eb5a4  847 / 847.0  (100.00%)
+
+        Deploying with following values
+        ===============================
+        Stack name                   : sam-app
+        Region                       : eu-south-1
+        Confirm changeset            : True
+        Deployment s3 bucket         : aws-sam-cli-managed-default-samclisourcebucket-1h5v0dlmdrcf5
+        Capabilities                 : ["CAPABILITY_IAM"]
+        Parameter overrides          : {}
+        Signing Profiles             : {}
+
+Initiating deployment
+=====================
+HelloWorldFunction may not have authorization defined.
+Uploading to sam-app/387b1bbf62793d2ddb87e7e1e162339a.template  1090 / 1090.0  (100.00%)
+
+Waiting for changeset to be created..
+
+CloudFormation stack changeset
+-------------------------------------------------------------------------------------------------
+Operation                LogicalResourceId        ResourceType             Replacement            
+-------------------------------------------------------------------------------------------------
+* Modify                 HelloWorldFunction       AWS::Lambda::Function    False                  
+* Modify                 ServerlessRestApi        AWS::ApiGateway::RestA   False                  
+                                                  pi                                              
+-------------------------------------------------------------------------------------------------
+
+Changeset created successfully. arn:aws:cloudformation:eu-south-1:748723773588:changeSet/samcli-deploy1608660640/84fa3cb6-51c9-4310-831a-035cfd854712
+
+
+Previewing CloudFormation changeset before deployment
+======================================================
+Deploy this changeset? [y/N]: 
+```
