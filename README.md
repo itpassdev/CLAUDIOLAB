@@ -263,4 +263,4 @@ Configuring SAM deploy
 Error: Failed to create managed resources: An error occurred (SignatureDoesNotMatch) when calling the CreateChangeSet operation: Signature not yet current: 20201222T184910Z is still later than 20201222T175457Z (20201222T174957Z + 5 min.)
 ```
 
-Su internet viene spiegato come: *API services verify timestamps to be within 5 minutes of actual time. **If the system clock is off by more than 5 minutes, then the API requests will fail.** *
+Su internet viene spiegato come: *API services verify timestamps to be within 5 minutes of actual time.* **If the system clock is off by more than 5 minutes, then the API requests will fail.** 
