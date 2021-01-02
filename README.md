@@ -1,12 +1,11 @@
 # CLAUDIOLAB
 
 #### Gruppo di studio ITPASS sull'universo del Cloud
-
-
+___
  *May you have a strong foundation when the winds of changes shift*
 <br/> 
 Bob Dylan, [**Forever Young**](https://www.youtube.com/watch?v=Frj2CLGldC4)
-
+___
 
 Condivisione di esperienze pratiche nell'utilizzo di soluzioni Cloud.
 
