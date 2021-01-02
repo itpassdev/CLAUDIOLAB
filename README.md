@@ -23,7 +23,7 @@ Elenchiamo qui di seguito alcuni testi che nel corso del 2021 useremo come rifer
 
 ## INCONTRI REALIZZATI O IN PIANO
 
-* **4 Gennaio 2021 h:21:15** <br/>Primo incontro (virtuale) di avvio del gruppo di studio *ITPASS* sul Cloud (**CLAUDIOLAB**)
+* **Martedì 5 Gennaio 2021 h:21:15** <br/>Primo incontro (virtuale) di avvio del gruppo di studio *ITPASS* sul Cloud (**CLAUDIOLAB**)
 <br/>*Prevista la presenza di*: Andrea R., Riccardo P., Roberto G., ...
 <br/>Introduzione al tema e indicazioni per utilizzare con profitto l'ambiente *Jupyter Lab* anche per questo progetto. Uso di `samdev`.
 
