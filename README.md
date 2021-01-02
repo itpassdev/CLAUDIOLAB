@@ -1,9 +1,36 @@
 # CLAUDIOLAB
-Gruppo di studio ITPASS sull'universo del CLOUD
+####Gruppo di studio ITPASS sull'universo del Cloud
 
-Condivisione di esperienze pratiche nell'utilizzo di soluzioni Cloud. 
-Un primo punto di partenza potrebbe essere l'uso (gratuito il primo anno) di **Amazon Web Services** come banco di prova dei concetti base.
+<hr/>
+<cite>"May you have a strong foundation when the winds of changes shift"</cite> <br/> Bob Dylan, [**Forever Young**](https://www.youtube.com/watch?v=Frj2CLGldC4)
+<hr/>
+
+Condivisione di esperienze pratiche nell'utilizzo di soluzioni Cloud.
+
+Abbiamo pensato di partire da **AWS**, *Amazon Web Services*, come primo banco di prova per fare un poco di esperienza. La praticità di accesso ad AWS e la sua diffusione (esiste anche la possibilità di sfruttare 
+un primo anno gratuito di sperimentazione) lo rende ideale per partire.
+
 Successivamente potremo estendere le conoscenze ad altre infrastrutture. 
+<hr/>
+
+## TESTI INTERESSANTI
+Elenchiamo qui di seguito alcuni testi che nel corso del 2021 useremo come riferimento per approfondire l'argomento.
+
+* **Serverless Architectures on AWS** *Peter Sbarski* Testo del 2017 in lingua inglese molto centrato sull'argomento (mi è stato segnalato da Roberto G.). Procede diretto verso le funzioni **AWS Lambda** che costituiscono il cuore del concetto *serverless* in ambito AWS.
+
+
+## INCONTRI REALIZZATI O IN PIANO
+
+* **4 Gennaio 2021 h:21:15** <br/>Primo incontro (virtuale) di avvio del gruppo di studio *ITPASS* sul Cloud (**CLAUDIOLAB**)
+<br/>*Prevista la presenza di*: Andrea R., Riccardo P., Roberto G., ...
+<br/>Introduzione al tema e indicazioni per utilizzare con profitto l'ambiente *Jupyter Lab* anche per questo progetto. Uso di `samdev`.
+
+
+## IBM i ?
+
+Non potevamo ignorare un ruolo per la nostra piattaforma di elezione e così abbiamo installato (dopo alcune difficoltà legate a dipendenze non soddisfatte) il tool *open source* di AWS sviluppato in Python e [disponibile su GitHub](https://github.com/aws/aws-sam-cli). 
+
+Nella nostra installazione è richiamabile col nome di `samdev`:   
 
 ```
 bash-5.0$ samdev --help
