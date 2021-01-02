@@ -18,7 +18,7 @@ Successivamente potremo estendere le conoscenze ad altre infrastrutture.
 ## TESTI INTERESSANTI
 Elenchiamo qui di seguito alcuni testi che nel corso del 2021 useremo come riferimento per approfondire l'argomento.
 
-* **Serverless Architectures on AWS** *Peter Sbarski* Testo del 2017 in lingua inglese molto centrato sull'argomento (mi è stato segnalato da Roberto G.). Procede diretto verso le funzioni **AWS Lambda** che costituiscono il cuore del concetto *serverless* in ambito AWS.
+* **Serverless Architectures on AWS** di *Peter Sbarski*. Testo del 2017 in lingua inglese molto centrato sull'argomento (mi è stato segnalato da Roberto G.). Procede diretto verso le funzioni **AWS Lambda** che costituiscono il cuore del concetto *serverless* in ambito AWS.
 
 
 ## INCONTRI REALIZZATI O IN PIANO
