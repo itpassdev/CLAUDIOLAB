@@ -2,9 +2,11 @@
 
 #### Gruppo di studio ITPASS sull'universo del Cloud
 
-<hr/>
- *May you have a strong foundation when the winds of changes shift*<br/> Bob Dylan, [**Forever Young**](https://www.youtube.com/watch?v=Frj2CLGldC4)
-<hr/>
+
+ *May you have a strong foundation when the winds of changes shift*
+<br/> 
+Bob Dylan, [**Forever Young**](https://www.youtube.com/watch?v=Frj2CLGldC4)
+
 
 Condivisione di esperienze pratiche nell'utilizzo di soluzioni Cloud.
 
