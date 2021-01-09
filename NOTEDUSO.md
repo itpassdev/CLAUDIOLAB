@@ -7,7 +7,7 @@ AWS CLI è uno strumento che consente di gestire i servizi AWS dalla riga di com
 
 ### Installazione
 Il pacchetto di installazione (da scegliere in base al s.o.) è scaricabile da https://docs.aws.amazon.com/it_it/cli/latest/userguide/install-cliv2.html. 
-Per consentire a AWS CLI di accedere ai servizi dell'account, occorre fornire il file delle credenziali ```credentials``` nella cartella ```.aws```.
+Per consentire a AWS CLI di accedere ai servizi dell'account, occorre fornire il file delle credenziali *credentials* nella cartella *.aws*.
 E' possibile ottenere il file a livello di account, ma è consigliabile istituire degli utenti specifici generando specifiche credenziali.
 
 ### Struttura del comando
@@ -33,7 +33,7 @@ E' possibile ospitare anche pagine web statiche.
 
 https://aws.amazon.com/it/s3
 
-Esempio di comando da AWS CLI:
+####  Esempi di comandi da AWS CLI:
 
 ```
 ubuntu@ip-172-31-41-203:~$ aws s3 ls
@@ -55,10 +55,74 @@ Servizio di macchine virtuali con possibilità di scelta di vari sistemi operati
 https://aws.amazon.com/it/ec2
 
 ### Creazione EC2 da console
+Le istruzione per l'avvio di una istanza EC2 da console sono spiegate in https://docs.aws.amazon.com/it_it/efs/latest/ug/gs-step-one-create-ec2-resources.html.
+
+Al termine della configurazione, viene chiesto se associare una **key pair** per l'accesso all'istanza. Essa è composta da una **Public key** che viene conservata da AWS e una **Private key** in un file da scaricare unatantum e da non perdere, con estensione *.pem* e per default posizionata in .ssh.  
+
+E' possibile crearne una ad hoc, usarne una già esistente, oppure creare l'istanze senza coppia di chiavi, e in questo ultimo caso l'accesso è impedito.
+
+Una volta creata l'istanza è possibile vederla in esecuzione insieme alle altre istanze dal Pannello di controllo di EC2.
+
+Una istanza può essere essere in vari stati: RUNNING, STOPPED, HIBERNATED, TERMINATED. Nell'ultimo caso non è più possibile riattivarla e dopo poco tempo viene rimossa dall'elenco. 
+
+Una volta in stato running, è possibile accedere all'interno dell'istanza tramite comandi *ssh*.
+
+#### Essempio di comando ssh per l'accesso ad una istanza EC2
+
+```
+~$ ssh -i ".ssh/key_pair_ec2.pem" ubuntu@ec2-54-170-111-138.eu-west-1.compute.amazonaws.com
+
+The authenticity of host 'ec2-54-170-111-138.eu-west-1.compute.amazonaws.com (54.170.111.138)' can't be established.
+ECDSA key fingerprint is SHA256:QDFAhSEKXAQFmC3QMZDOgNOIM/PTuGidoui5HJ5DyZA.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added 'ec2-54-170-111-138.eu-west-1.compute.amazonaws.com,54.170.111.138' (ECDSA) to the list of known hosts.
+Welcome to Ubuntu 20.04.1 LTS (GNU/Linux 5.4.0-1029-aws x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Sat Jan  9 18:55:02 UTC 2021
+
+  System load:  0.02              Processes:             102
+  Usage of /:   16.8% of 7.69GB   Users logged in:       0
+  Memory usage: 20%               IPv4 address for eth0: 172.31.5.59
+  Swap usage:   0%
+
+1 update can be installed immediately.
+0 of these updates are security updates.
+To see these additional updates run: apt list --upgradable
+
+
+The list of available updates is more than a week old.
+To check for new updates run: sudo apt update
+
+
+The programs included with the Ubuntu system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+applicable law.
+
+To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+
+ubuntu@ip-172-31-5-59:~$ ll
+total 28
+drwxr-xr-x 4 ubuntu ubuntu 4096 Jan  9 18:55 ./
+drwxr-xr-x 3 root   root   4096 Jan  9 18:51 ../
+-rw-r--r-- 1 ubuntu ubuntu  220 Feb 25  2020 .bash_logout
+-rw-r--r-- 1 ubuntu ubuntu 3771 Feb 25  2020 .bashrc
+drwx------ 2 ubuntu ubuntu 4096 Jan  9 18:55 .cache/
+-rw-r--r-- 1 ubuntu ubuntu  807 Feb 25  2020 .profile
+drwx------ 2 ubuntu ubuntu 4096 Jan  9 18:51 .ssh/
+ubuntu@ip-172-31-5-59:~$
+```
 
 
 
-Esempio di utilizzo da AWS CLI
+#### Esempi di comandi da AWS CLI di interrogazione istanze
 
 ```
 ubuntu@ip-172-31-41-203:~$ aws ec2 describe-instances --instance-ids i-0bdd6f530d8cb5740
