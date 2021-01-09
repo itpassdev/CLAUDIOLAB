@@ -7,7 +7,7 @@ AWS CLI è uno strumento che consente di gestire i servizi AWS dalla riga di com
 
 ### Installazione
 Il pacchetto di installazione (da scegliere in base al s.o. è scaricabile da https://docs.aws.amazon.com/it_it/cli/latest/userguide/install-cliv2.html. 
-Per consentire a AWS CLI di accedere ai servizi dell'account, occorre fornire il file delle credenziali ```credentials``` nella cartella ```.aws.```.
+Per consentire a AWS CLI di accedere ai servizi dell'account, occorre fornire il file delle credenziali ```credentials``` nella cartella ```.aws```.
 E' possibile ottenere il file a livello di account, ma è consigliabile istituire degli utenti specifici generando specifiche credenziali.
 La struttura del comando è la seguente:
 
@@ -20,6 +20,7 @@ Alcuni servizi AWS hanno comandi *wait* disponibili. In questo caso il comando �
 La gamma di possibili comandi è vastissima per cui rimandiamo i dettagli alla documentazione fornita da AWS.
 
 https://aws.amazon.com/it/cli/
+
 https://docs.aws.amazon.com/cli/latest/reference/
 
 ## S3 - Simple Storage Service
