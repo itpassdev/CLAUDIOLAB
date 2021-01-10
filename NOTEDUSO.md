@@ -324,6 +324,8 @@ https://aws.amazon.com/it/fargate/
 
 <font color="red">TODO</font>
 
+<span style="color:red">TODO</span>
+
 
 ## ECS - Elastic Container Service
 Servizio di orchestrazione dei container completamente gestito.
