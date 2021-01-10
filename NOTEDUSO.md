@@ -322,6 +322,8 @@ Fargate rimuove la necessità di allocare e gestire server.
 
 https://aws.amazon.com/it/fargate/
 
+<font color="red">TODO</font>
+
 
 ## ECS - Elastic Container Service
 Servizio di orchestrazione dei container completamente gestito.
