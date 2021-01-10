@@ -108,21 +108,17 @@ applicable law.
 To run a command as administrator (user "root"), use "sudo <command>".
 See "man sudo_root" for details.
 
-ubuntu@ip-172-31-5-59:~$ ll
-total 28
-drwxr-xr-x 4 ubuntu ubuntu 4096 Jan  9 18:55 ./
-drwxr-xr-x 3 root   root   4096 Jan  9 18:51 ../
--rw-r--r-- 1 ubuntu ubuntu  220 Feb 25  2020 .bash_logout
--rw-r--r-- 1 ubuntu ubuntu 3771 Feb 25  2020 .bashrc
-drwx------ 2 ubuntu ubuntu 4096 Jan  9 18:55 .cache/
--rw-r--r-- 1 ubuntu ubuntu  807 Feb 25  2020 .profile
-drwx------ 2 ubuntu ubuntu 4096 Jan  9 18:51 .ssh/
-ubuntu@ip-172-31-5-59:~$
+ubuntu@ip-172-31-5-59:~$ 
 ```
 
 Per verificare la versione:
 ```
-lsb_release -a
+ubuntu@ip-172-31-1-124:~$ lsb_release -a
+No LSB modules are available.
+Distributor ID: Ubuntu
+Description:    Ubuntu 20.04.1 LTS
+Release:        20.04
+Codename:       focal
 ```
 
 #### Esempi di comandi da AWS CLI di interrogazione istanze
@@ -164,8 +160,8 @@ ubuntu@ip-172-31-41-203:~$ aws ec2 describe-instances --instance-ids i-0bdd6f530
 
 
 ## Docker
-Docker è una piattaforma software che permette di creare, testare e distribuire applicazioni, raccogliendo il software in unità standardizzate chiamate container con tutto il necessario per la loro corretta esecuzione, incluse librerie, strumenti di sistema, codice e runtime. 
-Con Docker, è possibile distribuire e ricalibrare le risorse per un'applicazione in qualsiasi ambiente, tenendo sempre sotto controllo il codice eseguito.
+**Docker** è una piattaforma software che permette di creare, testare e distribuire applicazioni, raccogliendo il software in unità standardizzate chiamate container con tutto il necessario per la loro corretta esecuzione, incluse librerie, strumenti di sistema, codice e runtime. 
+Con **Docker**, è possibile distribuire e ricalibrare le risorse per un'applicazione in qualsiasi ambiente, tenendo sempre sotto controllo il codice eseguito.
 Alcune immagini AWS con cui si creano istanze ICS contentogono già docker installato (AWS Linux), mentre altre come Ubuntu richiedono l'installazione.
 
 https://aws.amazon.com/it/docker/
@@ -203,27 +199,13 @@ sudo systemctl status docker
 sudo service docker start
 ```
 
-Assegnazione dell'utente ubuntu al gruppo docker. Uscire e rientrare dall'istanza per avere l'effetto del comando.
+Assegnazione dell'utente ubuntu al gruppo docker. Uscire e rientrare per rendere effettivo il comando.
 ```
 sudo usermod -a -G docker ubuntu
 ```
-sudo apt install -y apt-utils 
 
 
-
-sudo apt install -y yum-utils
-
-
-?snap install docker
-
-
-
-
-
-
-
-
-### Creazione immagine docker
+### Creazione immagine docker da Dockerfile
 Creazione di un **Dockerfile**. Un Dockerfile definisce gli elementi essenziali per fare funzionare un servizio/applicazione all'interno di un docker.
 ```
 FROM ubuntu:18.04
@@ -253,7 +235,7 @@ Creazione di una immagine docker partendo dal Dockerfile.
 ubuntu@ip-172-31-5-59:~$ docker build -t hello-world .	   
 ```
 
-Lista delle immagini locali.
+Lista delle immagini.
 ```
 ubuntu@ip-172-31-5-59:~$ sudo docker images
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
@@ -271,27 +253,67 @@ docker: Got permission denied while trying to connect to the Docker daemon socke
 See 'docker run --help'.
 ```
 
-Per entrare nel conatiner:
+Per entrare nel container:
 ```
-docker exec -it <id container>   bash
+$ docker exec -it <id container>   bash
 ```
 
 Stop del container:
 ```
-docker stop <id container>
+$ docker stop <id container>
 ```
 
 Se non di ferma, forzare lo stop entrando nel container e kill del processo:
 ```
-docker exec <id container> ps -a
-docker exec <id container> kill <id proc.>
+$ docker exec <id container> ps -a
+$ docker exec <id container> kill <id proc.>
 ```
 
 Rimozione container:
 ```
-docker rm <id container>
+$ docker rm <id container>
 ```
 
+
+## ECR - Elastic Container Registry
+Registro di container completamente gestito che semplifica lo storage, la gestione, la condivisione e la distribuzione di immagini docker.	
+
+Comando AWS CLI per creare un nuovo repository:
+```
+$ aws ecr create-repository --repository-name hello-repository-itpass --region eu-w
+est-1
+{
+    "repository": {
+        "repositoryArn": "arn:aws:ecr:eu-west-1:132507283096:repository/hello-repository-itpass",
+        "registryId": "132507283096",
+        "repositoryName": "hello-repository-itpass",
+        "repositoryUri": "132507283096.dkr.ecr.eu-west-1.amazonaws.com/hello-repository-itpass",
+        "createdAt": 1610285860.0,
+        "imageTagMutability": "MUTABLE",
+        "imageScanningConfiguration": {
+            "scanOnPush": false
+        }
+    }
+}
+```
+
+Comando AWS CLI per rimuovere un repository:
+```
+aws ecr delete-repository --repository-name hello-repository-itpass --region eu-west-1 --force
+```
+
+### Push di una immagine docker nel registry
+```
+ubuntu@ip-172-31-1-124:~$ docker tag hello-world 132507283096.dkr.ecr.eu-west-1.amazonaws.com/hello-repository-itpass
+```
+
+```
+aws ecr get-login-password | docker login --username AWS --password-stdin 132507283096.dkr.ecr.eu-west-1.amazonaws.com
+```
+
+```
+docker push 132507283096.dkr.ecr.eu-west-1.amazonaws.com/hello-repository-itpass
+```
 
 
 ## FARGATE
@@ -307,6 +329,12 @@ Può essere integrato in modo nativo con altri servizi AWS, come **Amazon Route 
 Si può eseguire **ECS**  utilizzando un mix di **EC2** e AWS **Fargate**.
 
 https://aws.amazon.com/it/ecs
+
+
+### Task definition
+
+### Avvio servizio ECS
+
 
 
 ## EKS - Elastic Kubernetes Service
