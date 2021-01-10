@@ -342,25 +342,37 @@ https://aws.amazon.com/it/getting-started/hands-on/deploy-docker-containers/
 ### Task definition
 Una **task definition** è un insieme di specifiche per l'esecuzione di una applicazione. Ogni task lanciato su ECS si basa su una task definition.
 in genere in una task definition è definita l'mmagine docker caricata nel repository ECR.
+
 Una task definition può essere creata accendendo dalla sezione Amazon ECS, o sfruttando il wizard di console oppure attraverso un json.
 
 ### Cluster
 Indicare il tipo di istanza EC2 da creare contestualmente al Cluster
+
 Ricordarsi di indicare la coppia di chiavi per l'accesso ssh all'istanza EC2.
+
 E' possibile indicare una **VPC** esistente o indicarne una nuova da creare.
+
 E' possibile indicare un **Security group** esistente o indicarne uno nuovo da creare.
 
 ### Avvio servizio ECS
 Una volta creato il cluster, occorre definire i servizi che devono essere avviati.
+
 Nel tab Service è possibile creare, aggiornare e rimuovere i vari servizi.
+
 Durante la creazione del servizio viene richiesto quale task definition agganciare.
+
 Per le prove indicare numero di task = 1.
-Un valore positivo di Number of Task avvia i task. Un valore negato arresta li arresta.
+
+Un valore positivo di Number of Task avvia i task. Un valore negato arresta li arresta. 
+
+NOTA: Se nel cluster è indicato un **Auto Scaling Group** il container viene riavviato.
+
 All'interno di ogni task, alla sezione Networking è indicato l'indirizzo IP Publico per raggiuntere il servizio via web.
 
 ## EKS - Elastic Kubernetes Service
 Servizio gestito che permette l'esecuzione su AWS di applicazioni **Kubernetes** come container serverless.
 **Kubernetes** è un software open source che permette di distribuire e gestire applicazioni in container in modo scalabile.
+
 Si può eseguire **EKS** utilizzando AWS **Fargate**.
  
 https://aws.amazon.com/it/eks
