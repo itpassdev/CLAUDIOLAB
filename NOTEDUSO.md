@@ -334,12 +334,29 @@ Si può eseguire **ECS**  utilizzando un mix di **EC2** e AWS **Fargate**.
 
 https://aws.amazon.com/it/ecs
 
+Le istruzione per l'avvio di un servizio ECS da console sono spiegate in
+https://docs.aws.amazon.com/AmazonECS/latest/developerguide/getting-started-ecs-ec2.html
+
+https://aws.amazon.com/it/getting-started/hands-on/deploy-docker-containers/
 
 ### Task definition
+Una **task definition** è un insieme di specifiche per l'esecuzione di una applicazione. Ogni task lanciato su ECS si basa su una task definition.
+in genere in una task definition è definita l'mmagine docker caricata nel repository ECR.
+Una task definition può essere creata accendendo dalla sezione Amazon ECS, o sfruttando il wizard di console oppure attraverso un json.
+
+### Cluster
+Indicare il tipo di istanza EC2 da creare contestualmente al Cluster
+Ricordarsi di indicare la coppia di chiavi per l'accesso ssh all'istanza EC2.
+E' possibile indicare una **VPC** esistente o indicarne una nuova da creare.
+E' possibile indicare un **Security group** esistente o indicarne uno nuovo da creare.
 
 ### Avvio servizio ECS
-
-
+Una volta creato il cluster, occorre definire i servizi che devono essere avviati.
+Nel tab Service è possibile creare, aggiornare e rimuovere i vari servizi.
+Durante la creazione del servizio viene richiesto quale task definition agganciare.
+Per le prove indicare numero di task = 1.
+Un valore positivo di Number of Task avvia i task. Un valore negato arresta li arresta.
+All'interno di ogni task, alla sezione Networking è indicato l'indirizzo IP Publico per raggiuntere il servizio via web.
 
 ## EKS - Elastic Kubernetes Service
 Servizio gestito che permette l'esecuzione su AWS di applicazioni **Kubernetes** come container serverless.
@@ -366,12 +383,13 @@ https://aws.amazon.com/it/elasticloadbalancing/
 
 ***TODO***
 
+
 ## ROUTE53 - Amazon Route 53 
 Servizio Web di DNS.
 
-***TODO***
-
 https://aws.amazon.com/it/route53/
+
+***TODO***
 
 
 
