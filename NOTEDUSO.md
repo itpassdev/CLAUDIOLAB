@@ -322,9 +322,9 @@ Fargate rimuove la necessità di allocare e gestire server.
 
 https://aws.amazon.com/it/fargate/
 
-<font color="red">TODO</font>
+***TODO***
 
-<span style="color:red">TODO</span>
+
 
 
 ## ECS - Elastic Container Service
@@ -348,11 +348,15 @@ Si può eseguire **EKS** utilizzando AWS **Fargate**.
  
 https://aws.amazon.com/it/eks
 
+***TODO***
+
  
 ## EBS - Elastic Block Store
  Servizio di storage a blocchi ad alte prestazioni di facile utilizzo con **EC2** (Amazon Elastic Compute Cloud).
  
 https://aws.amazon.com/it/ebs
+
+***TODO***
 
 
 ## ALB - Elastic Load Balancing
@@ -360,9 +364,12 @@ E' un sistema di instradamento automatico del traffico in entrata delle applicaz
 
 https://aws.amazon.com/it/elasticloadbalancing/
 
+***TODO***
 
 ## ROUTE53 - Amazon Route 53 
 Servizio Web di DNS.
+
+***TODO***
 
 https://aws.amazon.com/it/route53/
 
