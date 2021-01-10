@@ -57,17 +57,17 @@ https://aws.amazon.com/it/ec2
 ### Creazione EC2 da console
 Le istruzione per l'avvio di una istanza EC2 da console sono spiegate in https://docs.aws.amazon.com/it_it/efs/latest/ug/gs-step-one-create-ec2-resources.html.
 
-Al termine della configurazione, viene chiesto se associare una **key pair** per l'accesso all'istanza. Essa è composta da una **Public key** che viene conservata da AWS e una **Private key** in un file da scaricare unatantum e da non perdere, con estensione *.pem* e per default posizionata in .ssh.  
+Al termine della configurazione, viene chiesto se associare una **key pair** per l'accesso all'istanza. Essa è composta da una **Public key** che viene conservata da AWS e una **Private key** in un file  con estensione *.pem* da scaricare unatantum e da non perdere, per default posizionato in *.ssh*.  
+
+NOTA: in ambiente Windows utilizzare PuTTYGen per convertire la chiave *.pem* con la chiave *.pkk*.
 
 E' possibile crearne una ad hoc, usarne una già esistente, oppure creare l'istanze senza coppia di chiavi, e in questo ultimo caso l'accesso è impedito.
 
 Una volta creata l'istanza è possibile vederla in esecuzione insieme alle altre istanze dal Pannello di controllo di EC2.
 
-Una istanza può essere essere in vari stati: RUNNING, STOPPED, HIBERNATED, TERMINATED. Nell'ultimo caso non è più possibile riattivarla e dopo poco tempo viene rimossa dall'elenco. 
+Una istanza può essere in stato RUNNING, STOPPED, HIBERNATED, TERMINATED. Nell'ultimo caso non è più possibile riattivarla e dopo poco tempo viene rimossa dall'elenco. 
 
-Una volta in stato running, è possibile accedere all'interno dell'istanza tramite comandi *ssh*.
-
-#### Essempio di comando ssh per l'accesso ad una istanza EC2
+Una volta in stato running, è possibile accedere all'interno dell'istanza tramite comandi *ssh* sfruttando la **Private key** salvata nel file *.pem*. Il DNS dell'istanza si può recuperare con *Connect* sull'istanza selezionata. 
 
 ```
 ~$ ssh -i ".ssh/key_pair_ec2.pem" ubuntu@ec2-54-170-111-138.eu-west-1.compute.amazonaws.com
@@ -120,7 +120,10 @@ drwx------ 2 ubuntu ubuntu 4096 Jan  9 18:51 .ssh/
 ubuntu@ip-172-31-5-59:~$
 ```
 
-
+Per verificare la versione:
+```
+lsb_release -a
+```
 
 #### Esempi di comandi da AWS CLI di interrogazione istanze
 
@@ -163,8 +166,132 @@ ubuntu@ip-172-31-41-203:~$ aws ec2 describe-instances --instance-ids i-0bdd6f530
 ## Docker
 Docker è una piattaforma software che permette di creare, testare e distribuire applicazioni, raccogliendo il software in unità standardizzate chiamate container con tutto il necessario per la loro corretta esecuzione, incluse librerie, strumenti di sistema, codice e runtime. 
 Con Docker, è possibile distribuire e ricalibrare le risorse per un'applicazione in qualsiasi ambiente, tenendo sempre sotto controllo il codice eseguito.
+Alcune immagini AWS con cui si creano istanze ICS contentogono già docker installato (AWS Linux), mentre altre come Ubuntu richiedono l'installazione.
 
 https://aws.amazon.com/it/docker/
+
+### Installazione di Docker
+Per l'installazione di docker all'interno di una EC2 seguire le istruzioni al link:
+https://docs.aws.amazon.com/it_it/AmazonECS/latest/userguide/docker-basics.html
+
+Per una EC2 con Ubuntu, prendere spunto dalle istruzioni dai link:
+https://docs.docker.com/engine/install/ubuntu/
+
+https://phoenixnap.com/kb/how-to-install-docker-on-ubuntu-18-04:
+
+https://noviello.it/come-installare-e-configurare-docker-su-ubuntu-20-04-lts/
+
+
+Comando per scaricare la lista aggiornata dei pacchetti e delle nuove versioni disponibili nei repository. Questo comando si limita a recuperare informazioni.
+```
+sudo apt update
+```
+
+Comando per eseguire l'avanzamento di versione, passando alla release di Ubuntu successiva.
+```
+sudo apt upgrade
+```
+
+```
+sudo apt install apt-transport-https ca-certificates curl software-properties-common gnupg-agent
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+sudo apt update
+sudo apt-cache policy docker-ce
+sudo apt install docker-ce   
+sudo systemctl status docker
+sudo service docker start
+```
+
+Assegnazione dell'utente ubuntu al gruppo docker. Uscire e rientrare dall'istanza per avere l'effetto del comando.
+```
+sudo usermod -a -G docker ubuntu
+```
+sudo apt install -y apt-utils 
+
+
+
+sudo apt install -y yum-utils
+
+
+?snap install docker
+
+
+
+
+
+
+
+
+### Creazione immagine docker
+Creazione di un **Dockerfile**. Un Dockerfile definisce gli elementi essenziali per fare funzionare un servizio/applicazione all'interno di un docker.
+```
+FROM ubuntu:18.04
+
+# Install dependencies
+RUN apt-get update && \
+ apt-get -y install apache2
+
+# Install apache and write hello world message
+RUN echo 'Hello World! Prova di Riccardo P.'  > /var/www/html/index.html
+
+# Configure apache
+RUN echo '. /etc/apache2/envvars' > /root/run_apache.sh && \
+ echo 'mkdir -p /var/run/apache2' >> /root/run_apache.sh && \
+ echo 'mkdir -p /var/lock/apache2' >> /root/run_apache.sh && \
+ echo '/usr/sbin/apache2 -D FOREGROUND' >> /root/run_apache.sh && \
+ chmod 755 /root/run_apache.sh
+
+EXPOSE 80
+
+CMD /root/run_apache.sh
+
+```
+	   
+Creazione di una immagine docker partendo dal Dockerfile.
+```
+ubuntu@ip-172-31-5-59:~$ docker build -t hello-world .	   
+```
+
+Lista delle immagini locali.
+```
+ubuntu@ip-172-31-5-59:~$ sudo docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+hello-world         latest              86183a359250        51 seconds ago      195MB
+ubuntu              18.04               2c047404e52d        6 weeks ago         63.3MB
+```
+
+**IMPORTANTE** E' necessario aprire le porte http al **Security Group** legato all'istanze EC2, e riavviare l'istanza.
+
+### Esecuzione di un container partendo da una immagine
+Esecuzione del container.
+```
+ubuntu@ip-172-31-5-59:~$ docker run -t -i -d -p 80:80 hello-world
+docker: Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Post http://%2Fvar%2Frun%2Fdocker.sock/v1.40/containers/create: dial unix /var/run/docker.sock: connect: permission denied.
+See 'docker run --help'.
+```
+
+Per entrare nel conatiner:
+```
+docker exec -it <id container>   bash
+```
+
+Stop del container:
+```
+docker stop <id container>
+```
+
+Se non di ferma, forzare lo stop entrando nel container e kill del processo:
+```
+docker exec <id container> ps -a
+docker exec <id container> kill <id proc.>
+```
+
+Rimozione container:
+```
+docker rm <id container>
+```
+
 
 
 ## FARGATE
