@@ -158,6 +158,27 @@ ubuntu@ip-172-31-41-203:~$ aws ec2 describe-instances --instance-ids i-0bdd6f530
 ]
 ```
 
+Filtro su un campo:
+```
+aws ec2 describe-instances --filters Name=instance-type,Values=t2.micro
+```
+
+Filtro su un tag:
+```
+aws ec2 describe-instances --filter 'Name=tag:Name,Values=itpass'
+```
+
+Start di una istanza:
+```
+$ aws ec2 start-instances --instance-ids i-0134920b744fbdc23
+```
+
+Stop di una istanza:
+```
+$ aws ec2 stop-instances --instance-ids i-0134920b744fbdc23
+```
+
+
 
 ## Docker
 **Docker** è una piattaforma software che permette di creare, testare e distribuire applicazioni, raccogliendo il software in unità standardizzate chiamate container con tutto il necessario per la loro corretta esecuzione, incluse librerie, strumenti di sistema, codice e runtime. 
