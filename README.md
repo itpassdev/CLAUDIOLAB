@@ -294,7 +294,7 @@ Error: Failed to create managed resources: An error occurred (SignatureDoesNotMa
 
 Su internet viene spiegato come: *API services verify timestamps to be within 5 minutes of actual time.* **If the system clock is off by more than 5 minutes, then the API requests will fail.** 
 
-**Per correggere questo errore con** `CHGSYSVAL SYSVAL(QHOUR) VALUE('18')` **anticipo di un ora**
+**L'errore è stato propriamente corretto, come ben suggerito da Claudio G., nell'impostare il corretto fuso orario ** `CHGSYSVAL SYSVAL(QTIMZON) VALUE(QP0100CET4)`
 
 ```
 Configuring SAM deploy
