@@ -2,6 +2,10 @@
 
 #### Note utilizzo AWS
 
+I vari servizi AWS sono ben documentati in varie sezioni.
+ 
+https://docs.aws.amazon.com/index.html
+
 ## AWS CLI - Command Line Interface
 AWS CLI è uno strumento che consente di gestire i servizi AWS dalla riga di comando o mediante script, eseguendo le stesse operazioni che si possono eseguire dalla console.
 
@@ -54,8 +58,12 @@ Servizio di macchine virtuali con possibilità di scelta di vari sistemi operati
 
 https://aws.amazon.com/it/ec2
 
+https://docs.aws.amazon.com/it_it/AWSEC2/latest/UserGuide/concepts.html
+
 ### Creazione EC2 da console
-Le istruzione per l'avvio di una istanza EC2 da console sono spiegate in https://docs.aws.amazon.com/it_it/efs/latest/ug/gs-step-one-create-ec2-resources.html.
+Le istruzione per l'avvio di una istanza EC2 da console sono spiegate in 
+https://docs.aws.amazon.com/it_it/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html
+https://docs.aws.amazon.com/it_it/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html
 
 Al termine della configurazione, viene chiesto se associare una **key pair** per l'accesso all'istanza. Essa è composta da una **Public key** che viene conservata da AWS e una **Private key** in un file  con estensione *.pem* da scaricare unatantum e da non perdere, per default posizionato in *.ssh*.  
 
@@ -179,6 +187,31 @@ $ aws ec2 stop-instances --instance-ids i-0134920b744fbdc23
 ```
 
 
+### Creazione AMI (Amazon Machine Images)
+Una AMI (Amazon Machine Image) è un modello che contiene una configurazione software, con un proprio sistema operativo, un server di applicazioni e le applicazioni. 
+
+	E' possibile creare e registrare una AMI, partendo da una istanza EC2 esistente. Con la funzione Create Image eseguita selezionando una istanza EC2 esistente, viene creata l'immagine.
+
+Da una immagine registrata si può avviare una nuova istanza ec2, identica al quella originale, con un proprio volume montato. 
+
+Questo strumento è utile per avviare più istanze EC2 uguali.
+
+https://docs.aws.amazon.com/it_it/AWSEC2/latest/UserGuide/AMIs.html
+
+https://docs.aws.amazon.com/it_it/AWSEC2/latest/UserGuide/ec2-instances-and-amis.html
+
+https://docs.aws.amazon.com/toolkit-for-visual-studio/latest/user-guide/tkv-create-ami-from-instance.html
+
+
+### Creazione template
+A differenza di una immagine, un template contiene una insieme di informazione tecniche per avviare una istanza con delle proprie specifiche. E' un modo per avviare una istanza EC2 con tutte le specifiche già definite.
+
+Con la funzione Create Template eseguita selezionando una istanza EC2 esistente, viene creato un template con le stesse specifiche utilizzate per creare quest'ultima.
+
+Una delle specifiche è la AMI di partenza, che di solito è una di quelle proposte da AWS oppure AWS marketplace, ma potrebbe essere anche una propria AMI registrata nell'account.
+
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-templates.html
+
 
 ## Docker
 **Docker** è una piattaforma software che permette di creare, testare e distribuire applicazioni, raccogliendo il software in unità standardizzate chiamate container con tutto il necessario per la loro corretta esecuzione, incluse librerie, strumenti di sistema, codice e runtime. 
@@ -267,7 +300,7 @@ ubuntu              18.04               2c047404e52d        6 weeks ago         
 **IMPORTANTE** E' necessario aprire le porte http al **Security Group** legato all'istanze EC2, e riavviare l'istanza.
 
 ### Esecuzione di un container partendo da una immagine
-Esecuzione del container.
+Esecuzione del container.  
 ```
 ubuntu@ip-172-31-5-59:~$ docker run -t -i -d -p 80:80 hello-world
 docker: Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Post http://%2Fvar%2Frun%2Fdocker.sock/v1.40/containers/create: dial unix /var/run/docker.sock: connect: permission denied.
@@ -425,6 +458,8 @@ https://aws.amazon.com/it/route53/
 ***TODO***
 
 
+## Auto Scaling Group**
 
+***TODO***
 
 
