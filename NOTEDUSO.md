@@ -302,9 +302,15 @@ ubuntu              18.04               2c047404e52d        6 weeks ago         
 ### Esecuzione di un container partendo da una immagine
 Esecuzione del container.  
 ```
-ubuntu@ip-172-31-5-59:~$ docker run -t -i -d -p 80:80 hello-world
+$ docker run -t -i -d -p 80:80 hello-world
 docker: Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Post http://%2Fvar%2Frun%2Fdocker.sock/v1.40/containers/create: dial unix /var/run/docker.sock: connect: permission denied.
 See 'docker run --help'.
+```
+
+```
+$ docker run -t -i -d -p 80:80 hello-world
+$ docker run -t -i -p    80:80 hello-world
+$ docker run -t -i -d -p 8080:80 hello-world
 ```
 
 Per entrare nel container:
@@ -327,6 +333,8 @@ Rimozione container:
 ```
 $ docker rm <id container>
 ```
+
+
 
 
 ## ECR - Elastic Container Registry
@@ -446,6 +454,8 @@ https://aws.amazon.com/it/ebs
 E' un sistema di instradamento automatico del traffico in entrata delle applicazioni tra molteplici destinazioni, quali istanze Amazon EC2, container, indirizzi IP, funzioni Lambda e appliance virtuali
 
 https://aws.amazon.com/it/elasticloadbalancing/
+
+https://docs.aws.amazon.com/elasticloadbalancing/?id=docs_gateway
 
 ***TODO***
 
