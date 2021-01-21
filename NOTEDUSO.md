@@ -450,7 +450,7 @@ https://aws.amazon.com/it/ebs
 ***TODO***
 
 
-## ALB - Elastic Load Balancing
+## AWS ELB - Elastic Load Balancing e Target Groups
 E' un sistema di instradamento automatico del traffico in entrata delle applicazioni tra molteplici destinazioni, quali istanze Amazon EC2, container, indirizzi IP, funzioni Lambda e appliance virtuali
 
 https://aws.amazon.com/it/elasticloadbalancing/
@@ -458,6 +458,12 @@ https://aws.amazon.com/it/elasticloadbalancing/
 https://docs.aws.amazon.com/elasticloadbalancing/?id=docs_gateway
 
 ***TODO***
+
+Un ELB ha associato un security group con la definizione delle porte in ascolto.
+Tra i Listeners sono indicate le porte in ascolto all'esterno e le relative rules, cioè l'instradamento della chiamata attraverso i Target Groups.
+Un Target Group ha associate delle istanze EC2.
+
+Nel Security Group di una istanza è possibile indicare per una porta, al posto di 0/0/0/0, il Load Balancer. A quel punto la macchina non è più raggiungibile con il suo indirizzo pubblico da quella porta, ma solo dal Load Balancer.
 
 
 ## ROUTE53 - Amazon Route 53 
