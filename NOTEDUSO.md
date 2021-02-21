@@ -1,4 +1,4 @@
-# CLAUDIOLAB
+	# CLAUDIOLAB
 
 #### Note utilizzo AWS
 
@@ -297,7 +297,13 @@ hello-world         latest              86183a359250        51 seconds ago      
 ubuntu              18.04               2c047404e52d        6 weeks ago         63.3MB
 ```
 
+Comando per vedere informazioni su un'immagine docker.
+```
+$docker image inspect hello-world
+```
+
 **IMPORTANTE** E' necessario aprire le porte http al **Security Group** legato all'istanze EC2, e riavviare l'istanza.
+
 
 ### Esecuzione di un container partendo da una immagine
 Esecuzione del container.  
